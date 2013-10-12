@@ -1,8 +1,6 @@
 #include <cstdlib>
-#include <fstream>
 #include <iostream>
 #include <queue>
-#include <sstream>
 
 using namespace std;
 
@@ -167,18 +165,11 @@ int Graph::bfs(int init, int target)
 }
 
 int main(int argc, char *argv[])
-{
-	ifstream fin("110902.inp");
-	stringstream ss;
-	string s;
-	
+{	
 	int nTestCase = 0;
-	getline(fin, s);
-	ss << s;
-	ss >> nTestCase;
-	ss.clear();
+	cin >> nTestCase;
 	
-	getline(fin, s);
+	//cin.get();
 	
 	int value[4];
 	int initValue, targetValue;
@@ -187,35 +178,25 @@ int main(int argc, char *argv[])
 	{
 		Graph g;
 		
-		getline(fin, s);
-		ss << s;
-		ss >> value[3] >> value[2] >> value[1] >> value[0];
+		cin >> value[3] >> value[2] >> value[1] >> value[0];
 		initValue = value[3] * 1000 + value[2] * 100 + value[1] * 10 + value[0];
-		ss.clear();
 		
-		getline(fin, s);
-		ss << s;
-		ss >> value[3] >> value[2] >> value[1] >> value[0];
+		cin >> value[3] >> value[2] >> value[1] >> value[0];
 		targetValue = value[3] * 1000 + value[2] * 100 + value[1] * 10 + value[0];
-		ss.clear();
-	
+		
 		int nForbid = 0;
-		getline(fin, s);
-		ss << s;
-		ss >> nForbid;
-		ss.clear();
+		cin >> nForbid;
 	
 		for (int i = 0; i < nForbid; ++i)
 		{
-			getline(fin, s);
-			ss << s;
-			ss >> value[3] >> value[2] >> value[1] >> value[0];
-			ss.clear();
+			cin >> value[3] >> value[2] >> value[1] >> value[0];
 			g.deleteVertex(value[3] * 1000 + value[2] * 100 + value[1] * 10 + value[0]);
 		}
 		cout << g.bfs(initValue, targetValue) << endl;
-		getline(fin, s);
+		
+		if (idx < nTestCase - 1) cin.get();
 	}
 	
 	return EXIT_SUCCESS;
 }
+
